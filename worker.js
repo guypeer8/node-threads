@@ -14,5 +14,8 @@ if (isMainThread) {
     console.warn('Main thread pid: ', process.pid);
 } else {
     console.log('Making cpu intensive run!');
-    createWorker({ file: join(__dirname, 'cpu-intensive.js'), workerData: new Date().getTime() });
+    createWorker({ 
+        file: join(__dirname, 'cpu-intensive.js'), 
+        workerData: new Date().getTime(),
+     });
  }

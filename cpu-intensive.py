@@ -1,9 +1,6 @@
 from os import getpid
+
+num = sum((i for i in range(int(1e8))))
+
 print('python pid: ', getpid())
-
-i = 0; num = 0
-while i < 100000000:
-    num += i
-    i += 1
-
 print('Result is: ', num)
