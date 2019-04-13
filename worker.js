@@ -1,5 +1,6 @@
 const { isMainThread } = require('worker_threads');
 const createWorker = require('./lib/create-worker');
+const { writeFile } = require('fs');
 const { join } = require('path');
 
 if (isMainThread) {
@@ -7,7 +8,9 @@ if (isMainThread) {
     createWorker({
         file: __filename,
         message(histogram) {
-            console.log('Histogram: ', histogram);
+            writeFile('histogram.json', JSON.stringify(histogram, null, 2), err => 
+                err ? console.warn(err) : console.log('Wrote Histogram.')
+            );
         },
     });
     setInterval(() => console.log('interval... (2 sec)'), 2000);
