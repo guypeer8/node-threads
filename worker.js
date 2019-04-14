@@ -9,7 +9,7 @@ if (isMainThread) {
     createWorker({
         file: __filename,
         message({ histogram, algorithm }) {
-            const histogram_path = join(__dirname, 'sort', 'histograms', `histogram-${algorithm}.json`);
+            const histogram_path = join(__dirname, 'histograms', `${algorithm}-histogram.json`);
             writeFile(
                 histogram_path,
                 JSON.stringify(histogram, null, 2),
