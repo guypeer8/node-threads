@@ -28,6 +28,10 @@ function run() {
     }
 }
 
-run();
+// run();
 
-module.exports = { ...funcs, shuffle, merge };
+module.exports = {
+    ...funcs,
+    shuffle,
+    merge,
+};
