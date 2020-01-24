@@ -13,8 +13,12 @@ if (isMainThread) {
             writeFile(
                 histogram_path,
                 JSON.stringify(histogram, null, 2),
-                err =>
-                    err ? console.warn(err) : console.log(`Wrote "${algorithm}" Histogram.`)
+                err => {
+                    if (err) {
+                        return console.warn(err);
+                    }
+                    console.log(`Wrote "${algorithm}" Histogram.`);
+                }
             );
         },
     });
@@ -24,13 +28,7 @@ if (isMainThread) {
 } else {
     console.log('Making cpu intensive run!');
 
-    createWorker({
-        file: join(__dirname, 'cpu-intensive.js'),
-        workerData: 'quicksort',
-     });
-
-    createWorker({
-        file: join(__dirname, 'cpu-intensive.js'),
-        workerData: 'mergesort',
-    });
+    const file = join(__dirname, 'cpu-intensive.js');
+    createWorker({ file, workerData: 'quicksort' });
+    createWorker({ file, workerData: 'mergesort' });
  }
